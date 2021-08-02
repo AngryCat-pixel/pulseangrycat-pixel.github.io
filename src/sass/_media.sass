@@ -65,8 +65,6 @@
 				margin-bottom: 20px
 
 	.button
-    // width: 150px
-    // height: 30px
     background-color: $main_color
     border-radius: 5px
     border: none
@@ -95,6 +93,14 @@
 			text-transform: uppercase
 			color: #FFFFFF
 			text-align: center
+	.catalog
+		&__content
+			&_active
+				display: flex
+				justify-content: space-evenly
+	.feed
+		&__img
+			margin-left: 20px
 
 @media  ( max-width: 767px )
 	.header
@@ -153,6 +159,14 @@
 			// align-items: center  
 		&__icon
 			margin-top: 20px
+	.catalog
+		&__content
+			&_active
+				display: flex
+				justify-content: space-evenly
+	.feed
+		&__img
+			margin-left: 20px
 
 @media  ( max-width: 575px )
 	.header
