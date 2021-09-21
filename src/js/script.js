@@ -14,7 +14,7 @@ $(document).ready(function () {
 			}
 		]
 	});
-	$('ul.catalog__tabs').on('click', 'li:not(.catalog__tab_active)', function () {
+	$('div.catalog__tabs').on('click', 'li:not(.catalog__tab_active)', function () {
 		$(this)
 			.addClass('catalog__tab_active').siblings().removeClass('catalog__tab_active')
 			.closest('div.container').find('div.catalog__content').removeClass('catalog__content_active').eq($(this).index()).addClass('catalog__content_active');
@@ -53,7 +53,6 @@ $(document).ready(function () {
 			rules: {
 				name: {
 					required: true,
-					minLength: 2
 				},
 				phone: "required",
 				email: {
@@ -64,7 +63,6 @@ $(document).ready(function () {
 				messages: {
 					name: {
 					  required: "Введите имя",
-					  minlength: jQuery.validator.format("Минимум {0} символа!")
 					},
 					phone: "Введите номер телефона",
 					email: {
@@ -80,4 +78,27 @@ $(document).ready(function () {
 	validateForms('#order form');
 
 	$("input[name=phone]").mask("+380 (99-999-99-99");
+
+	$('form').submit(function(e) {
+		e.preventDefault();
+		$.ajax({
+			type: POST,
+			url: 'mailer/smart.php', 
+			data: $(this).serialize()
+		}).done(function() {
+			$(this).find("input").val("");
+
+
+
+			$('form').trigger('reset');
+		})
+		return false;
+	});
+	$(window).scroll(function() {
+		if ($(this).scrollTop() > 700) {
+			$('.pageup').fadeIn();
+		}else {
+			$('.pageup').fadeOut();
+		}
+	})
 });
